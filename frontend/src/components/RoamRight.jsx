@@ -7,7 +7,20 @@ function RoamRight() {
     const [sessionData, setSessionData] = useState({ messages: [] }); // Initialize session with message history
 
     useEffect(() => {
-        setMessages([{ sender: "bot", text: "Welcome! How can I assist you with your travel plans today?" }]);
+        setSessionData({ state: "start", trip_data: {} });
+        setMessages([
+            {
+                sender: "bot",
+                text: 
+                    "Hello there! 🌍✈️ <br>" +
+                    "Welcome to your personalized travel planner! I'm here to help you design the perfect getaway.<br><br>" +
+                    "To get started, please share:<br>" +
+                    "1. Your travel dates.<br>" +
+                    "2. Your dream destination(s).<br>" +
+                    "3. Your budget for this trip.<br><br>" +
+                    "Once I have these details, we can begin crafting your unforgettable adventure!",
+            }
+        ]);
     }, []);
 
     const sendMessage = async () => {
@@ -62,13 +75,12 @@ function RoamRight() {
                 backgroundColor: "#121212",
                 color: "#FFFFFF",
                 height: "98vh",
-                backgroundImage: `url(${bg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
             }}
         >
-            <h1 style={{ textAlign: "center", color: "#FFD700" }}>ROAM RIGHT</h1>
+            <h1 style={{ textAlign: "center", color: "white" }}>ROAM RIGHT</h1>
             <div
                 style={{
                     border: "1px solid #444",
@@ -91,10 +103,8 @@ function RoamRight() {
                         <strong style={{ color: msg.sender === "user" ? "#1E90FF" : "#FFD700" }}>
                             {msg.sender === "user" ? "You" : "Bot"}:
                         </strong>{" "}
-                        <span
-                            style={{color: "#FFFFFF"}}
-                            dangerouslySetInnerHTML={{__html: msg.text}}
-                        />
+                        <span style={{color: "#FFFFFF"}}
+                        dangerouslySetInnerHTML={{__html:msg.text}}/>
                     </div>
                 ))}
             </div>
