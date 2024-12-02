@@ -10,11 +10,11 @@ def get_directions(origin_lat, origin_lon, dest_lat, dest_lon, api_key):
     }
     try:
         response = requests.post(url, json=body, headers=headers)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+        response.raise_for_status()  
         directions = response.json()
         if 'routes' in directions and directions['routes']:
             route = directions['routes'][0]['summary']
-            return route.get('distance', 0) / 1000, route.get('duration', 0) / 60  # distance in km, duration in minutes
+            return route.get('distance', 0) / 1000, route.get('duration', 0) / 60  
         else:
             print(f"No routes found between coordinates: {origin_lat}, {origin_lon} and {dest_lat}, {dest_lon}.")
             return None, None
