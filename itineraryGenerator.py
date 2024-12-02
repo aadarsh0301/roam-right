@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app) 
 
 # Initialize Groq API client
-client = Groq(api_key="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")  # Replace with your GroqCloud API key
+client = Groq(api_key="")  # Replace with your GroqCloud API key
 trip_details_json = {
     "destination": "",
     "budget": "",
