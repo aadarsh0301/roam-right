@@ -2,10 +2,10 @@ import requests
 from datetime import datetime
 from groq import Groq
 from weather import get_coordinates, get_weather, transform_places_to_visit, transform_places
-from direction import get_directions, calculate_daily_travel_times
+from directions_tom_tom import get_directions, calculate_daily_travel_times
 
-api_key = "5b3ce3597851110001cf6248e2a5ae629ee64cde9ed713780f6b31ef" #openroute
-API_KEY = "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"
+api_key = "" #openroute
+API_KEY = ""
 
 def initialize_groq_client():
     try:
@@ -97,6 +97,7 @@ def get_weather_and_places(location, start_date, duration):
 
 location = "Seattle"
 start_date = datetime.strptime("2024-12-02", "%Y-%m-%d")
+print(start_date)
 duration = 4
 
 result = get_weather_and_places(location, start_date, duration)
@@ -111,6 +112,8 @@ result = get_weather_and_places(location, start_date, duration)
 #     print(f"Date: {date}")
 #     for place in places:
 #         print(f"- {place}")
+
+
 main_res = transform_places(transform_places_to_visit(result))
 print(main_res)
 
@@ -119,3 +122,5 @@ origin_lat, origin_lon = get_coordinates(location)
 
 travel_times = calculate_daily_travel_times(main_res, origin_lat, origin_lon, api_key)
 print(travel_times)
+
+prompt = f"Create a detailed travel itinerary for a {location}. I "
